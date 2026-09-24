@@ -1,26 +1,20 @@
 ﻿class Category
 {
-    private int survivals;
-    private string name;
-
-    public string Name
-    {
-        get => name;
-        set
-        {
-            if (string.IsNullOrEmpty(value)) throw new Exception("nem lehet üres!");
-            name = value;
-        }
-    }
-    public int Survivals
-    {
-        get => survivals;
-        set
-        {
-            if (value < 0 || value > 1000) throw new Exception("hülye vagy bazdmeg!");
-
-            survivals = value;
-        }
-    }
+    public string Name { get; set; }
+    public int Survivals { get; set; }
     public int Missing { get; set; }
+
+    public override string ToString() =>
+        $"\tkategórianév:   {Name}\n" +
+        $"\ttúlélők száma:  {Survivals} fő\n" +
+        $"\teltűntek száma: {Missing} fő";
+
+    public Category(string row)
+    {
+        var tmp = row.Split(';');
+
+        Name = tmp[0];
+        Survivals = int.Parse(tmp[1]);
+        Missing = int.Parse(tmp[2]);
+    }
 }

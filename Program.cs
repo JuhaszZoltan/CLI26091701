@@ -1,8 +1,10 @@
-﻿Category cat = new()
-{
-    Name = "",
-    Survivals = 200,
-    Missing = 50
-};
+﻿using System.Text;
 
-Console.WriteLine(cat is not null  ? "oké" : "nem oké");
+#nullable disable
+
+const string FilePath = "..\\..\\..\\data\\titanic.txt";
+
+List<Category> categories = [];
+
+using StreamReader sr = new(FilePath, Encoding.UTF8);
+while (!sr.EndOfStream) categories.Add(new(sr.ReadLine()));

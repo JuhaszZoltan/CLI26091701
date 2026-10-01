@@ -3,6 +3,7 @@
     public string Name { get; set; }
     public int Survivals { get; set; }
     public int Missing { get; set; }
+    public int Passengers => Survivals + Missing;
 
     public override string ToString() =>
         $"\tkategórianév:   {Name}\n" +
